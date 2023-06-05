@@ -36,7 +36,6 @@ export const SignupModal = ({isSignupOpen, setIsSignupOpen, setUser}) => {
 						color="primary"
 						size="lg"
 						placeholder="Email"
-						contentLeft="✉"
 						onChange={(e) => {
 							setEmail(e.target.value);
 						}}
@@ -49,7 +48,6 @@ export const SignupModal = ({isSignupOpen, setIsSignupOpen, setUser}) => {
 						color="primary"
 						size="lg"
 						placeholder="First Name"
-						contentLeft="✉"
 						onChange={(e) => {
 							setFirstName(e.target.value);
 						}}
@@ -62,7 +60,6 @@ export const SignupModal = ({isSignupOpen, setIsSignupOpen, setUser}) => {
 						color="primary"
 						size="lg"
 						placeholder="Last Name"
-						contentLeft="✉"
 						onChange={(e) => {
 							setLastName(e.target.value);
 						}}
@@ -83,7 +80,6 @@ export const SignupModal = ({isSignupOpen, setIsSignupOpen, setUser}) => {
 						color="primary"
 						size="lg"
 						placeholder="Password"
-						contentLeft="🔑"
 						type={'password'}
 						onChange={(e) => {
 							setPassword(e.target.value);
@@ -103,7 +99,7 @@ export const SignupModal = ({isSignupOpen, setIsSignupOpen, setUser}) => {
 						let user = await userSignup(email, firstName, lastName, birthDate, password);
 						setUser(user);
 					}}>
-						Sign in
+						Sign up
 					</Button>
 				</Modal.Footer>
 			</Modal>

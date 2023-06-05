@@ -55,3 +55,31 @@ export async function userLogout() {
 		return res.data?.__data__
 	});
 }
+
+export async function editMainData(firstName, lastName, email, about) {
+	let editResult = await axios.post(BASE_URL + '/edit/main_data', {
+		email,
+		"first_name": firstName,
+		"last_name": lastName,
+		"birthdate": "2000-01-10",
+		"about": about
+	}, {withCredentials: true}).then(res => {
+		return res.status == 200;
+	});
+
+	if (editResult) {
+		return await userCurrentInfo();
+	}
+
+	return editResult;
+}
+
+export async function editPassword(password) {
+	let editResult = await axios.post(BASE_URL + '/edit/password', {
+		password
+	}, {withCredentials: true}).then(res => {
+		return res.status == 200
+	})
+
+	return editResult
+}
