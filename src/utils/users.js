@@ -81,5 +81,17 @@ export async function editPassword(password) {
 		return res.status == 200
 	})
 
-	return editResult
+	if (editResult) {
+		return await userCurrentInfo();
+	}
+
+	return editResult;
+}
+
+export async function editStatus(status) {
+	let editResult = await axios.post(BASE_URL + '/edit/status', {
+		status
+	}, {withCredentials: true}).then(res => {
+		return res.status == 200
+	})
 }

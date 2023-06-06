@@ -8,7 +8,7 @@ import {Children} from "react";
 
 export const Layout = ({children}) => {
     return (
-        <Container lg>
+        <Container lg css={{maxHeight: "100vh"}}>
             <Grid.Container gap={2}>
                 <Grid xs={12} sm={3}>
                     <Card>
