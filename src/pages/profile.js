@@ -43,7 +43,6 @@ export const ProfilePage = () => {
 				setMyPage(true);
 				return;
 			}
-			console.log(pageId == res.id);
 
 			if (pageId == res.id) {
 				setMyPage(true);

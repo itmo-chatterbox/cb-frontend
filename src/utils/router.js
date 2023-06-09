@@ -1,5 +1,5 @@
-import Switch from 'react-router-dom/es/Switch';
-import Route from 'react-router-dom/es/Route';
+import Switch from 'react-router-dom/Switch';
+import Route from 'react-router-dom/Route';
 import {Redirect} from 'react-router-dom';
 import {ProfilePage} from '../pages/profile';
 import {EditPage} from '../pages/edit';
@@ -35,6 +35,10 @@ export const RouterComponent = () => {
 
 						<PrivateRoute path={"/edit"}>
 							<EditPage />
+						</PrivateRoute>
+
+						<PrivateRoute path={"/me/:id"}>
+							<MessagesPage />
 						</PrivateRoute>
 
 						<PrivateRoute path={"/me"}>

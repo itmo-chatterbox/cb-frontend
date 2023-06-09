@@ -13,6 +13,7 @@ import {
 import {useEffect, useState} from 'react';
 import {getChats, getMessages, sendMessage} from '../utils/messages';
 import {RxPaperPlane} from 'react-icons/rx';
+import {useParams} from "react-router-dom";
 
 const Message = ({name, photo, date, text}) => {
 	return (<Col>
@@ -59,19 +60,30 @@ const SendButton = styled('button', {
 
 export const MessagesPage = () => {
 
+	const {id} = useParams();
+
 	const [isLoading, setIsLoading] = useState(false);
 	const [chats, setChats] = useState([]);
 
-	const [currentChat, setCurrentChat] = useState(null);
+	const [currentChat, setCurrentChat] = useState(id);
 	const [messages, setMessages] = useState([]);
 
 	const [messageToSend, setMessageToSend] = useState(null);
 
-	function updateMesages() {
+	async function updateChats() {
 		setIsLoading(true);
-		setMessages([]);
 
-		getMessages(currentChat).then(res => {
+		return getChats().then(res => {
+			setChats(res);
+		}).finally(() => {
+			setIsLoading(false);
+		});
+	}
+
+	async function updateMesages() {
+		setIsLoading(true);
+
+		return getMessages(currentChat).then(res => {
 			setMessages(res);
 		}).finally(() => {
 			setIsLoading(false);
@@ -80,14 +92,17 @@ export const MessagesPage = () => {
 		});
 	}
 
-	useEffect(() => {
-		setIsLoading(true);
+	async function updateAll() {
+		await updateChats()
+		await updateMesages()
+	}
 
-		getChats().then(res => {
-			setChats(res);
-		}).finally(() => {
-			setIsLoading(false);
-		});
+	useEffect(() => {
+		updateChats()
+
+		setInterval(() => {
+			updateAll()
+		}, 1000)
 
 	}, []);
 
@@ -108,10 +123,7 @@ export const MessagesPage = () => {
 							<Col>
 								{chats.map(chat => (
 									<>
-										<Link css={{minWidth: '100%'}}
-											  onClick={() => {
-												  setCurrentChat(chat.user_id);
-											  }}>
+										<Link css={{minWidth: '100%'}} href={`/me/${chat.user_id}`}>
 											<Card variant={'bordered'}>
 												<Card.Body>
 													<User name={chat.full_name}
