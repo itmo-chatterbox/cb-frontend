@@ -1,17 +1,8 @@
 import fullLogo from '../images/full-logo.svg';
 import {Link, Navbar, User} from '@nextui-org/react';
-import {UserContext} from '../utils/users';
+import {noPhotoURL, UserContext} from '../utils/users';
+import {BASE_URL} from "../utils/config";
 
-const Links = [
-    {
-        name: 'Главная',
-        url: '/',
-    },
-    {
-        name: 'Сообщения',
-        url: '/me',
-    },
-];
 export default function Header() {
     return (
         <UserContext.Consumer>
@@ -30,7 +21,7 @@ export default function Header() {
                         {/*}*/}
 
                         <Link href={"/"}>
-                            <User src={`${user?.photo_url}`}
+                            <User src={`${BASE_URL + user?.photo_url || noPhotoURL}`}
                                   name={`${user?.first_name} ${user?.last_name}`}/>
                         </Link>
 

@@ -8,9 +8,9 @@ import {Children} from "react";
 
 export const Layout = ({children}) => {
     return (
-        <Container lg css={{maxHeight: "100vh"}}>
-            <Grid.Container gap={2}>
-                <Grid xs={12} sm={3}>
+        <Container lg>
+            <Grid.Container gap={2} css={{height: "90vh", overflow: "auto"}}>
+                <Grid xs={12} sm={3} css={{height: "fit-content"}}>
                     <Card>
                         <Card.Body>
                             <Sidebar/>
@@ -18,8 +18,8 @@ export const Layout = ({children}) => {
                     </Card>
                 </Grid>
                 <Grid xs={12} sm={9}>
-                    <Card>
-                        <Card.Body>
+                    <Card >
+                        <Card.Body >
                             {children}
                         </Card.Body>
                     </Card>

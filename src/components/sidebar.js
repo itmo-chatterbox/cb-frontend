@@ -8,7 +8,7 @@ export const Sidebar = () => {
 					{({user, setUser}) => (
 						<Col>
 							<a href={'/'}>
-								<Button css={{width: '100%'}} color="primary" flat>
+								<Button css={{width: '100%'}} color="primary" light>
 									My profile
 								</Button>
 							</a>
@@ -16,13 +16,15 @@ export const Sidebar = () => {
 
 							<Spacer/>
 
-							<Button css={{width: '100%'}} light color="primary">
-								ФрендЫ
-							</Button>
+							<a href={'/people'}>
+								<Button css={{width: '100%'}} color="primary" light>
+									People
+								</Button>
+							</a>
 							<Spacer/>
 
 							<a href={'/me'}>
-								<Button css={{width: '100%'}} color="primary" flat>
+								<Button css={{width: '100%'}} color="primary" light>
 									Messenger
 								</Button>
 							</a>

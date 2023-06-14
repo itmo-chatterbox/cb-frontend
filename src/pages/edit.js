@@ -1,6 +1,6 @@
 import {
 	editMainData,
-	editPassword,
+	editPassword, updatePhoto,
 	UserContext,
 	userCurrentInfo,
 } from '../utils/users';
@@ -19,6 +19,7 @@ import {
 import {useEffect, useState} from 'react';
 import * as React from 'react';
 import {Layout} from '../layout/layout';
+import {redirect} from "react-router-dom";
 
 export const EditPage = () => {
 
@@ -29,6 +30,8 @@ export const EditPage = () => {
 	const [password, setPassword] = useState(null);
 
 	const [isLoading, setIsLoading] = useState(false);
+
+	const [file, setFile] = useState();
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -102,6 +105,31 @@ export const EditPage = () => {
 														setIsLoading(false);
 													});
 												}}>Сохранить</Button>
+									</Link>
+								</Card.Body>
+							</Card>
+							<Spacer/>
+							<Card variant={'bordered'}>
+								<Card.Header>
+									Фотография профиля
+								</Card.Header>
+								<Card.Divider/>
+								<Card.Body>
+									<Input type={"file"}
+										   onInput={(e) => {
+											   setFile(e?.target?.files[0]);
+											   console.log(e?.target?.files[0])
+										   }}/>
+									<Spacer/>
+									<Link>
+										<Button color={'primary'} flat
+												onClick={async (e) => {
+													setIsLoading(true);
+
+													updatePhoto(file).finally(() => {
+														setIsLoading(false)
+													})
+												}}>Обновить</Button>
 									</Link>
 								</Card.Body>
 							</Card>

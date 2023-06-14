@@ -7,6 +7,7 @@ import {WelcomePage} from '../pages/welcome';
 import * as React from 'react';
 import {UserContext} from './users';
 import {MessagesPage} from '../pages/messages';
+import {PeoplePage} from "../pages/people";
 
 export const PrivateRoute = ({children, path, ...etc}) => {
 	return (
@@ -29,6 +30,11 @@ export const RouterComponent = () => {
 			{({user}) => {
 				return (
 					<Switch>
+
+						<PrivateRoute path={"/people"}>
+							<PeoplePage />
+						</PrivateRoute>
+
 						<PrivateRoute path={"/id/:id"}>
 							<ProfilePage />
 						</PrivateRoute>
